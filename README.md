@@ -11,5 +11,7 @@ To run, enter `java Markov file order n m`.
 
 `m` is the character length of each sentence.
 
+For example, `java Markov trump.txt 4 50 280`
+
 
 A text file of all of Trump's tweets has been included for playing around.
