@@ -1,7 +1,7 @@
 # markov-textgen
 Generates text from a source file using a markov chain model.
 
-To run, enter `javac Markov.java` then `java Markov file order n m`.
+To run, compile it with `javac Markov.java` then run it with `java Markov file order n m`.
 
 `file` is the file name of the source text. This file must be in the same folder as the code, and each sentence should be line separated. A text file of all of Trump's tweets has been included for playing around.
 
