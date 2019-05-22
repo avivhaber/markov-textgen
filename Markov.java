@@ -2,10 +2,30 @@ import java.util.*;
 import java.io.*;
 
 public class Markov {
+
+    /**
+     * The Markov chain. For each encountered n-gram, this map stores a redundant list of characters that come after it.
+     */
     HashMap<String,List<Character>> chain;
+
+    /**
+     * list of n-grams that sentences have started with. When generating a new sentence, simply start from a random element in this list.
+     */
     List<String>starts;
+
+    /**
+     * The number of sentences to be generated.
+     */
     int n;
+
+    /**
+     * The max character length of each sentence.
+     */
     int m;
+
+    /**
+     * The length of each n-gram. This value must be tweaked to get convincing text generation.
+     */
     int order;
 
     public Markov (int order,int n, int m){
@@ -26,16 +46,19 @@ public class Markov {
             System.out.println("Missing parameters.");
             return;
         }
+
         try{
             order=Integer.parseInt(args[1]);
             a=Integer.parseInt(args[2]);
             b=Integer.parseInt(args[3]);
+            if (order<1 || b<1) throw new Exception();
         }
         catch (Exception e){
-            System.out.println("Incorrect paramater format.");
-            return;
+            System.out.println("Paramaters must be positive integers.");
         }
+
         c=new Markov(order,a,b);
+
         try{
             br = new BufferedReader(new FileReader(args[0]));
             String ln=br.readLine();
@@ -43,8 +66,6 @@ public class Markov {
                 c.processLine(ln);
                 ln=br.readLine();
             }
-            //System.out.println(c.chain);
-            //System.out.println(c.starts);
             c.generate();
             br.close();
         }
@@ -75,6 +96,7 @@ public class Markov {
                 System.out.print(c);
                 gram=gram.substring(1)+c;
             }
+            System.out.println();
             System.out.println();
         }
     }
